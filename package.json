@@ -1,6 +1,6 @@
 {
   "name": "the-time",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "JavaScript time data struct",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -25,6 +25,7 @@
   "bugs": {
     "url": "https://github.com/nick-korolev/the-time/issues"
   },
+  "homepage": "https://github.com/nick-korolev/the-time#readme",
   "license": "ISC",
   "devDependencies": {
     "@types/chai": "^4.3.5",
