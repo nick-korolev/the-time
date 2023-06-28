@@ -13,15 +13,26 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm run test
-      - run: npm run build:pub
-      - run: npm run build:types
-      - run: npm publish
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Tests
+        run: npm run test:coverage
+      - name: Generating coverage badges
+        uses: jpb06/jest-badges-action@latest
+        with:
+          branches: main
+      - name: Build
+        run: npm run build:pub
+      - name: Build types
+        run: npm run build:types
+      - name: Publish to npm
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH}}

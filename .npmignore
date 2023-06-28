@@ -11,4 +11,6 @@ jest.config.js
 .github
 LICENSE
 tsconfig.json
+tsconfig.pub.json
 tests
+coverage

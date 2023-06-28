@@ -4,4 +4,6 @@ module.exports = {
     '^.+\\.ts$': 'ts-jest'
   },
   'testRegex': 'spec.(t|j)s$',
+  'coverageDirectory': './coverage/',
+  'coverageReporters': ['json-summary', 'text', 'lcov'],
 };

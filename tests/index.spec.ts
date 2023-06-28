@@ -2,6 +2,13 @@ import { Time } from '../src';
 import { assert } from 'chai';
 
 describe('Time', () => {
+
+  describe('#constructor()', () => {
+    it('should throw error if timeString is invalid', () => {
+      assert.throws(() => new Time('23:59:60'));
+    });
+  });
+
   describe('#toString()', () => {
     it('should return valid string with milliseconds', () => {
       const time = new Time('23:59:59');
@@ -79,6 +86,18 @@ describe('Time', () => {
     it('should throw error if amount is greater than Number.MAX_SAFE_INTEGER', () => {
       const time = new Time('23:59:59');
       assert.throws(() => time.add(Number.MAX_SAFE_INTEGER + 1, 'seconds'));
+    });
+
+    it('should throw error if amount is less than 0', () => {
+      const time = new Time('23:59:59');
+      assert.throws(() => time.add(-1, 'seconds'));
+    });
+
+    it('should throw error if amount is not a number', () => {
+      const time = new Time('23:59:59');
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      assert.throws(() => time.add('string', 'seconds'));
     });
   });
 

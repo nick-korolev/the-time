@@ -1,6 +1,6 @@
 {
   "name": "the-time",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "JavaScript time data struct",
   "main": "index.cjs.js",
   "module": "index.esm.js",
@@ -10,6 +10,7 @@
     "build:pub": "node esbuild.js --publish",
     "dev": "node esbuild.js --watch",
     "test": "jest --silent",
+    "test:coverage": "jest --silent --coverage",
     "build:types": "tsc --emitDeclarationOnly --project tsconfig.pub.json"
   },
   "keywords": [
