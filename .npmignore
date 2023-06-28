@@ -9,3 +9,6 @@ jest.config.js
 .eslintignore
 .eslintrc.js
 .github
+LICENSE
+tsconfig.json
+tests

@@ -2,37 +2,40 @@ const chokidar = require('chokidar')
 
 const esbuild = require('esbuild');
 
-async function buildCJS() {
+async function buildCJS(options = {}) {
+  const outfile = options.outDir ? `${options.outDir}/index.cjs.js` : 'dist/index.cjs.js';
   return esbuild.build({
     entryPoints: ['src/index.ts'],
     bundle: true,
     platform: 'node',
     target: 'node12',
     format: 'cjs',
-    outfile: 'dist/index.cjs.js',
+    outfile
   });
 }
 
 
-async function buildESM() {
+async function buildESM(options = {}) {
+  const outfile = options.outDir ? `${options.outDir}/index.esm.js` : 'dist/index.esm.js';
   return esbuild.build({
     entryPoints: ['src/index.ts'],
     bundle: true,
     platform: 'neutral',
     format: 'esm',
-    outfile: 'dist/index.esm.js',
+    outfile,
   });
 }
 
 
-async function buildUMD() {
+async function buildUMD(options = {}) {
+  const outfile = options.outDir ? `${options.outDir}/index.umd.js` : 'dist/index.umd.js';
   return esbuild.build({
     entryPoints: ['src/index.ts'],
     bundle: true,
     platform: 'browser',
     format: 'iife',
     globalName: 'MyLib',
-    outfile: 'dist/index.umd.js',
+    outfile
   });
 }
 
@@ -46,7 +49,10 @@ if (process.argv.includes('--watch')) {
 }
 
 if (process.argv.includes('--publish')) {
-  const promises = [buildCJS(), buildESM(), buildUMD()];
+  const options = {
+    outDir: '.',
+  }
+  const promises = [buildCJS(options), buildESM(options), buildUMD(options)];
   Promise.all(promises).then(() => {
     console.log('Build finished')
   });

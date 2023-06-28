@@ -1,6 +1,6 @@
 {
   "name": "the-time",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "JavaScript time data struct",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -18,6 +18,13 @@
     "time"
   ],
   "author": "Nikita Korolev <nick.korolev2011@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nick-korolev/the-time"
+  },
+  "bugs": {
+    "url": "https://github.com/nick-korolev/the-time/issues"
+  },
   "license": "ISC",
   "devDependencies": {
     "@types/chai": "^4.3.5",
