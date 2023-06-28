@@ -1,6 +1,6 @@
 {
   "name": "the-time",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "JavaScript time data struct",
   "main": "index.cjs.js",
   "module": "index.esm.js",
