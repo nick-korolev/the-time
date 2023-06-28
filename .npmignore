@@ -1,0 +1,11 @@
+src/
+node_modules/
+examples/
+*.log
+esbuild.js
+jest.config.js
+.idea
+.prettierrc.json
+.eslintignore
+.eslintrc.js
+.github
