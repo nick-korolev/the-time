@@ -94,6 +94,11 @@ Returns true if the `Time` instance is equal to the provided value.
 
 Returns the total number of seconds in the `Time` instance.
 
+#### `toDate(): number`
+
+Returns the `Time` instance as a `Date` instance.
+Note that it will return Date in your local timezone.
+
 #### `static now(): ITime`
 
 Returns the current time as a `Time` instance.
@@ -101,6 +106,11 @@ Returns the current time as a `Time` instance.
 #### `static isValid(timeString: string): boolean`
 
 Checks if a time string is valid.
+
+#### `static fromDate(date: Date): Time`
+
+Creates a new `Time` instance from a `Date` instance.  
+Not that it will return time in UTC format.
 
 ## License
 
