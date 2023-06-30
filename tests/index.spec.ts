@@ -217,4 +217,25 @@ describe('Time', () => {
       assert.isFalse(time.isEqualTo(other));
     });
   });
+
+  describe('#fromDate', () => {
+    it('should return time from date', () => {
+      const utc = Date.UTC(2020, 0, 1, 23, 59, 59);
+      const date = new Date(utc);
+      const time = Time.fromDate(date);
+
+      assert.equal(time.toTimeString(), '23:59:59');
+    });
+  });
+
+  describe('#toDate', () => {
+    it('should return date from time', () => {
+      const time = new Time('23:59:59');
+      const date = time.toDate();
+
+      assert.equal(date.getUTCHours(), 23);
+      assert.equal(date.getUTCMinutes(), 59);
+      assert.equal(date.getUTCSeconds(), 59);
+    });
+  });
 });

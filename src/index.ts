@@ -3,6 +3,7 @@ type TTimeValue = 'hours' | 'minutes' | 'seconds';
 export interface ITime {
   toString(): string;
   toTimeString(): string;
+  toDate(): Date;
 
   getHours(): number;
   getMinutes(): number;
@@ -91,10 +92,9 @@ export class Time implements ITime {
   }
 
   public static now(): ITime {
-    const date = new Date().toISOString();
-    const [_,timeString] = date.split('T');
-    const now = new Time(timeString.slice(0, 8));
-    return now;
+    const date = new Date();
+    const timeString = date.toISOString().slice(11, 19);
+    return new Time(timeString);
   }
 
   public isGreaterThan(value: ITime): boolean {
@@ -113,6 +113,20 @@ export class Time implements ITime {
     const timeInSec = this.toSeconds();
     const valueInSec = value.toSeconds();
     return timeInSec === valueInSec;
+  }
+
+  public toDate(): Date {
+    const date = new Date();
+    date.setUTCHours(this.hours);
+    date.setUTCMinutes(this.minutes);
+    date.setUTCSeconds(this.seconds);
+    date.setUTCMilliseconds(this.milliseconds);
+    return date;
+  }
+
+  public static fromDate(date: Date): ITime {
+    const timeString = date.toISOString().slice(11, 19);
+    return new Time(timeString);
   }
 
   private validateAmount(amount: number): void {
