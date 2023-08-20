@@ -21,6 +21,8 @@ export interface ITime {
 export interface ITimeOptions {
   // overflow: true - 23:59:59 + 1 minute = 00:00:59
   overflow?: boolean;
+  // utcOffset in minutes
+  utcOffset?: number;
 }
 
 export class Time implements ITime {
@@ -34,6 +36,9 @@ export class Time implements ITime {
     Time.validate(timeString);
     this.overflow = typeof options.overflow === 'boolean' ? options.overflow : true;
     [this.hours, this.minutes, this.seconds, this.milliseconds] = Time.parse(timeString);
+    if (options.utcOffset) {
+      this.add(options.utcOffset, 'minutes');
+    }
   }
 
   public toString(): string {
@@ -91,10 +96,10 @@ export class Time implements ITime {
     return timeRegex.test(timeString);
   }
 
-  public static now(): ITime {
+  public static now(options: ITimeOptions = {}): ITime {
     const date = new Date();
     const timeString = date.toISOString().slice(11, 19);
-    return new Time(timeString);
+    return new Time(timeString, options);
   }
 
   public isGreaterThan(value: ITime): boolean {
@@ -124,9 +129,9 @@ export class Time implements ITime {
     return date;
   }
 
-  public static fromDate(date: Date): ITime {
+  public static fromDate(date: Date, options: ITimeOptions = {}): ITime {
     const timeString = date.toISOString().slice(11, 19);
-    return new Time(timeString);
+    return new Time(timeString, options);
   }
 
   private validateAmount(amount: number): void {

@@ -161,6 +161,16 @@ describe('Time', () => {
       assert.equal(time.getMinutes(), now.getMinutes());
       assert.equal(time.getSeconds(), now.getSeconds());
     });
+
+    it('should return current time in local time', () => {
+      const time = Time.now({
+        utcOffset: 120
+      });
+      const now = new Date();
+
+      assert.equal(time.getMinutes(), now.getMinutes());
+      assert.equal(time.getSeconds(), now.getSeconds());
+    });
   });
 
   describe('#toSeconds()', () => {
@@ -225,6 +235,16 @@ describe('Time', () => {
       const time = Time.fromDate(date);
 
       assert.equal(time.toTimeString(), '23:59:59');
+    });
+
+    it('should return time from date with local time', () => {
+      const utc = Date.UTC(2020, 0, 1, 23, 59, 59);
+      const date = new Date(utc);
+      const time = Time.fromDate(date, {
+        utcOffset: 120
+      });
+
+      assert.equal(time.toTimeString(), '01:59:59');
     });
   });
 
