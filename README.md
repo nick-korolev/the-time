@@ -48,7 +48,8 @@ console.log(time.isGreaterThan(time2)); // outputs: true
 
 #### `constructor(timeString: string, options: ITimeOptions = {})`
 
-Creates a new `Time` instance from a time string. `timeString` must be in the format 'HH:mm:ss'. If `options.overflow` is set to true (which is the default), time will overflow when adding or subtracting (23:59:59 + 1 minute = 00:00:59).
+Creates a new `Time` instance from a time string. `timeString` must be in the format 'HH:mm:ss'. If `options.overflow` is set to true (which is the default), time will overflow when adding or subtracting (23:59:59 + 1 minute = 00:00:59).  
+`options.utcOffset` can be used to set the UTC offset of the time string.
 
 #### `toString(): string`
 
@@ -97,9 +98,8 @@ Returns the total number of seconds in the `Time` instance.
 #### `toDate(): number`
 
 Returns the `Time` instance as a `Date` instance.
-Note that it will return Date in your local timezone.
 
-#### `static now(): ITime`
+#### `static now(options: ITimeOptions = {}): ITime`
 
 Returns the current time as a `Time` instance.
 
@@ -107,10 +107,9 @@ Returns the current time as a `Time` instance.
 
 Checks if a time string is valid.
 
-#### `static fromDate(date: Date): Time`
+#### `static fromDate(date: Date, options: ITimeOptions = {}): Time`
 
-Creates a new `Time` instance from a `Date` instance.  
-Not that it will return time in UTC format.
+Creates a new `Time` instance from a `Date` instance.
 
 ## License
 
