@@ -9,7 +9,7 @@ The-Time is a simple JavaScript library for time manipulation and comparison. It
 ![Jest coverage](./badges/coverage-jest%20coverage.svg)
 
 ## Features
-- Create Time instances from time string.
+- Create Time instance from time string.
 - Get hours, minutes, and seconds from Time instances.
 - Add and subtract hours, minutes, and seconds from Time instances.
 - Compare Time instances.
